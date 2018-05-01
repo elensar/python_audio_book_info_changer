@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Some helpfer functions."""
+"""Some helper functions."""
 
 def get_value_if_not_none(value, get_value=lambda value: value, default_value=None):
     """Check if `value` is `None` and calls `get_value` if not.
