@@ -43,19 +43,19 @@ genre_value = argument_converter.get_clean_argument_value(sys.argv, genre_arg)
 
 if interactive_argument or not sys.argv:
     if not path_value:
-        path_value = utils.get_input_value('Path', True)
+        path_value = utils.get_input_value('Path', path_arg.is_mandatory)
 
     if not album_value:
-        album_value = utils.get_input_value('Album')
+        album_value = utils.get_input_value('Album', album_arg.is_mandatory)
 
     if not artist_value:
-        artist_value = utils.get_input_value('Artist')
+        artist_value = utils.get_input_value('Artist', artist_arg.is_mandatory)
 
     if not album_artist_value:
-        album_artist_value = utils.get_input_value('Album Artist')
+        album_artist_value = utils.get_input_value('Album Artist', album_artist_arg.is_mandatory)
 
     if not genre_value:
-        genre_value = utils.get_input_value('Genre')
+        genre_value = utils.get_input_value('Genre', genre_arg.is_mandatory)
 
 if not path_value:
     raise ValueError('Path must not be empty!')
