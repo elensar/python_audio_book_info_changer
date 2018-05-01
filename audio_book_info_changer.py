@@ -41,7 +41,7 @@ artist_value = argument_converter.get_clean_argument_value(sys.argv, artist_arg)
 album_artist_value = argument_converter.get_clean_argument_value(sys.argv, album_artist_arg)
 genre_value = argument_converter.get_clean_argument_value(sys.argv, genre_arg)
 
-if interactive_argument:
+if interactive_argument or not sys.argv:
     if not path_value:
         path_value = utils.get_input_value('Path', True)
 
