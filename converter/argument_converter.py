@@ -96,21 +96,21 @@ def valid_argument_text(args: List[argument]) -> str:
     Returns:
         str -- Text with valid arguments.
     """
+    sorted_args = sorted(args, key=lambda arg: len(arg.short_arg_key), reverse=True)
+    first_arg = utils.first_or_none(sorted_args)
+    arg_short_key_len = len(first_arg.short_arg_key)
+
     sorted_args = sorted(args, key=lambda arg: len(arg.long_arg_key), reverse=True)
     first_arg = utils.first_or_none(sorted_args)
     arg_long_key_len = len(first_arg.long_arg_key)
 
     result = ''
     for arg in args:
-        diff_len = arg_long_key_len - len(arg.long_arg_key)
-        diff_len_space = ''
-
-        for _ in itertools.repeat(None, diff_len):
-            diff_len_space += ' '
-
+        short_arg_key_format = '{:' + str(arg_short_key_len) + 's}'
+        long_arg_key_format = '{:' + str(arg_long_key_len) + 's}'
         result += '{0}\t{1}\tMandatory:{2}\t{3}\n'.format(
-            arg.short_arg_key,
-            arg.long_arg_key + diff_len_space,
+            short_arg_key_format.format(arg.short_arg_key),
+            long_arg_key_format.format(arg.long_arg_key),
             arg.is_mandatory,
             arg.description
         )
