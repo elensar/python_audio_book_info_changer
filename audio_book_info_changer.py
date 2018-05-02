@@ -27,6 +27,7 @@ valid_args = [
 
 argument_help_text = argument_converter.valid_argument_text(valid_args)
 
+print('Used arguments:')
 print(sys.argv)
 
 help_argument = argument_converter.get_argument(sys.argv, help_arg)
