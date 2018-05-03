@@ -108,10 +108,10 @@ def valid_argument_text(args: List[argument]) -> str:
     for arg in args:
         short_arg_key_format = '{:' + str(arg_short_key_len) + 's}'
         long_arg_key_format = '{:' + str(arg_long_key_len) + 's}'
-        result += '{0}\t{1}\tMandatory:{2}\t{3}\n'.format(
+        result += '{0}    {1}    Mandatory:{2:5s}    {3}\n'.format(
             short_arg_key_format.format(arg.short_arg_key),
             long_arg_key_format.format(arg.long_arg_key),
-            arg.is_mandatory,
+            str(arg.is_mandatory),
             arg.description
         )
 
