@@ -17,6 +17,7 @@ I recommend as first step to execute `audio_book_info_changer.py` with the argum
 -ar     --artist          Mandatory:False    Name of the artist.
 -alr    --album-artist    Mandatory:False    Name of the album artist.
 -g      --genre           Mandatory:False    Genre of the album.
+-gl     --genre-list      Mandatory:False    List of all genres.
 -i      --interactive     Mandatory:False    Activate the interactive mode.
 ```
 

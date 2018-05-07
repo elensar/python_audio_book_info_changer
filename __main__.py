@@ -2,6 +2,8 @@
 
 import sys
 
+from eyed3 import id3
+
 from converter import argument_converter
 from converter.argument import argument
 from helper import utils
@@ -13,6 +15,7 @@ album_arg = argument('-al', '--album', False, 'Name of the album.')
 artist_arg = argument('-ar', '--artist', False, 'Name of the artist.')
 album_artist_arg = argument('-alr', '--album-artist', False, 'Name of the album artist.')
 genre_arg = argument('-g', '--genre', False, 'Genre of the album.')
+genre_list_arg = argument('-gl', '--genre-list', False, 'List of all genres.')
 interactive_arg = argument('-i', '--interactive', False, 'Activate the interactive mode.')
 
 valid_args = [
@@ -22,6 +25,7 @@ valid_args = [
     artist_arg,
     album_artist_arg,
     genre_arg,
+    genre_list_arg,
     interactive_arg
 ]
 
@@ -36,6 +40,22 @@ if help_argument:
     sys.exit()
 
 interactive_argument = argument_converter.get_argument(sys.argv, interactive_arg)
+
+genre_list_argument = argument_converter.get_argument(sys.argv, genre_list_arg)
+if genre_list_argument:
+    genrelist = id3.genres.items()
+    for genre in genrelist:
+        genre_number = genre[0]
+        genre_name = genre[1]
+
+        if isinstance(genre_number, int) \
+            and genre_name is not None \
+            and isinstance(genre_name, str):
+            print('{0:3d}: {1}'.format(genre[0], genre[1]))
+
+    if not interactive_argument:
+        sys.exit()
+
 path_value = argument_converter.get_clean_argument_value(sys.argv, path_arg)
 album_value = argument_converter.get_clean_argument_value(sys.argv, album_arg)
 artist_value = argument_converter.get_clean_argument_value(sys.argv, artist_arg)
