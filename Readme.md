@@ -19,6 +19,7 @@ I recommend as first step to execute `audio_book_info_changer.py` with the argum
 -g      --genre           Mandatory:False    Genre of the album.
 -gl     --genre-list      Mandatory:False    List of all genres.
 -i      --interactive     Mandatory:False    Activate the interactive mode.
+-v      --version         Mandatory:False    Returns the version of the module.
 ```
 
 ## How to run the script
