@@ -68,7 +68,7 @@ version_argument = argument_converter.get_argument(version_arg)
 if version_argument:
     print('Modul version: {0}'.format(__version__))
 
-if interactive_argument or not sys.argv:
+if interactive_argument or argument_converter.arguments_are_null_or_empty(sys.argv):
     if not path_value:
         path_value = utils.get_input_value('Path', path_arg.is_mandatory)
 

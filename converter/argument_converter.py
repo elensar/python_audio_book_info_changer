@@ -122,3 +122,21 @@ def valid_argument_text(args: List[argument]) -> str:
         )
 
     return result
+
+def arguments_are_null_or_empty(args: List[str]) -> bool:
+    """
+    Check if args are null or empty and not default.
+
+    Arguments:
+        args {List[str]} -- [description]
+
+    Returns:
+        bool -- [description]
+    """
+    if not args:
+        return True
+
+    if len(args) > 1:
+        return False
+
+    return True if args[0] == project_name else False
