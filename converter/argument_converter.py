@@ -9,7 +9,8 @@ from helper import utils
 from converter.argument import argument
 
 def get_clean_argument_value(args: List[str], argument: argument) -> str:
-    """Combination of `get_argument` and `remove_argument_prefix`.
+    """
+    Combination of `get_argument` and `remove_argument_prefix`.
 
     Arguments:
         args {List[str]} -- List of arguments.
@@ -21,7 +22,8 @@ def get_clean_argument_value(args: List[str], argument: argument) -> str:
     return remove_argument_prefix(get_argument(args, argument), argument)
 
 def get_argument(args: List[str], argument: argument) -> str:
-    """Check if the argument match one entry inside the `args` list.
+    """
+    Check if the argument match one entry inside the `args` list.
 
     Arguments:
         args {List[str]} -- List of arguments.
@@ -33,7 +35,8 @@ def get_argument(args: List[str], argument: argument) -> str:
     return get_argument_base(args, argument.short_arg_key, argument.long_arg_key)
 
 def get_argument_base(args: List[str], short_arg: str, long_arg: str) -> str:
-    """Basic function to check if the short or the long argument is inside the args list
+    """
+    Basic function to check if the short or the long argument is inside the args list
     and return the full matching argument.
 
     Arguments:
@@ -56,7 +59,8 @@ def get_argument_base(args: List[str], short_arg: str, long_arg: str) -> str:
     return result
 
 def remove_argument_prefix(arg: str, argument: argument) -> str:
-    """Removes the prefix of the argument.
+    """
+    Removes the prefix of the argument.
 
     Arguments:
         arg {str} -- Argument with prefix.
@@ -68,7 +72,8 @@ def remove_argument_prefix(arg: str, argument: argument) -> str:
     return remove_argument_prefix_base(arg, argument.short_arg_key, argument.long_arg_key)
 
 def remove_argument_prefix_base(arg: str, short_arg: str, long_arg: str) -> str:
-    """Removes the prefix of the argument.
+    """
+    Removes the prefix of the argument.
 
     Arguments:
         arg {str} -- Argument with prefix.
@@ -88,7 +93,8 @@ def remove_argument_prefix_base(arg: str, short_arg: str, long_arg: str) -> str:
     return re.sub(regular_expression, '', arg)
 
 def valid_argument_text(args: List[argument]) -> str:
-    """Create a text with all valid arguments.
+    """
+    Create a text with all valid arguments.
 
     Arguments:
         args {List[argument]} -- List with valid arguments.

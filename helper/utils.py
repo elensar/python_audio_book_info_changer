@@ -2,7 +2,8 @@
 """Some helper functions."""
 
 def get_value_if_not_none(value, get_value=lambda value: value, default_value=None):
-    """Check if `value` is `None` and calls `get_value` if not.
+    """
+    Check if `value` is `None` and calls `get_value` if not.
 
     Arguments:
         value {[type]} -- the value which should be checked.
@@ -18,7 +19,8 @@ def get_value_if_not_none(value, get_value=lambda value: value, default_value=No
     return get_value(value) if value != None else default_value
 
 def first_or_none(items, condition=lambda item: True):
-    """Return the first item where result of `condition` is `True`.
+    """
+    Return the first item where result of `condition` is `True`.
     If no entry match the condition or the list is `None` the result will be None too.
 
     Arguments:
@@ -40,7 +42,8 @@ def first_or_none(items, condition=lambda item: True):
     return None
 
 def get_input_value(value_name: str, is_mandatory: bool=False) -> str:
-    """Get input value from user for a specific value.
+    """
+    Get input value from user for a specific value.
 
     Arguments:
         value_name {str} -- Name of the value which will be asked.
