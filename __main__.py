@@ -17,7 +17,6 @@ album_artist_arg = argument('-alr', '--album-artist', False, 'Name of the album 
 genre_arg = argument('-g', '--genre', False, 'Genre of the album.')
 genre_list_arg = argument('-gl', '--genre-list', False, 'List of all genres.')
 interactive_arg = argument('-i', '--interactive', False, 'Activate the interactive mode.')
-version_arg = argument('-v', '--version', False, 'Returns the version of the module.')
 
 valid_args = [
     help_arg,
@@ -27,8 +26,7 @@ valid_args = [
     album_artist_arg,
     genre_arg,
     genre_list_arg,
-    interactive_arg,
-    version_arg
+    interactive_arg
 ]
 
 argument_help_text = argument_converter.valid_argument_text(valid_args)
@@ -63,10 +61,6 @@ album_value = argument_converter.get_clean_argument_value(sys.argv, album_arg)
 artist_value = argument_converter.get_clean_argument_value(sys.argv, artist_arg)
 album_artist_value = argument_converter.get_clean_argument_value(sys.argv, album_artist_arg)
 genre_value = argument_converter.get_clean_argument_value(sys.argv, genre_arg)
-
-version_argument = argument_converter.get_argument(version_arg)
-if version_argument:
-    print('Modul version: {0}'.format(__version__))
 
 if interactive_argument or argument_converter.arguments_are_null_or_empty(sys.argv):
     if not path_value:
