@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 
-import eyed3
 import os
 import sys
+
+import eyed3
+from natsort import natsorted
 
 def change_mp3_tags(
         root_dir: str,
@@ -11,7 +13,8 @@ def change_mp3_tags(
         album_artist: str=None,
         genre: str=None
     ) -> None:
-    """Change the ID3 Tags of the MP3 files and the name. Every informateion which is not set will
+    """
+    Change the ID3 Tags of the MP3 files and the name. Every informateion which is not set will
     not be used.
 
     Arguments:
@@ -30,7 +33,7 @@ def change_mp3_tags(
     if not album_dirs:
         sys.exit()
 
-    sorted_album_dirs = sorted(album_dirs)
+    sorted_album_dirs = natsorted(album_dirs)
 
     chapter_counter = 1
     for current_dir in sorted_album_dirs:
@@ -38,7 +41,7 @@ def change_mp3_tags(
         if not tracks:
             sys.exit()
 
-        sorted_tracks = sorted(tracks)
+        sorted_tracks = natsorted(tracks)
         for current_track in sorted_tracks:
             file_path = '{0}/{1}/{2}'.format(root_dir, current_dir, current_track)
             audio_file = eyed3.load(file_path)
