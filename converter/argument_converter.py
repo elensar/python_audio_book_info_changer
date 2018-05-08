@@ -8,6 +8,8 @@ import itertools
 from helper import utils
 from converter.argument import argument
 
+project_name = 'python_audio_book_info_changer'
+
 def get_clean_argument_value(args: List[str], argument: argument) -> str:
     """
     Combination of `get_argument` and `remove_argument_prefix`.
