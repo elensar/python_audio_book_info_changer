@@ -19,6 +19,49 @@ genre_arg = argument('-g', '--genre', False, 'Genre of the album.')
 genre_list_arg = argument('-gl', '--genre-list', False, 'List of all genres.')
 interactive_arg = argument('-i', '--interactive', False, 'Activate the interactive mode.')
 
+parser = argparse.ArgumentParser(allow_abbrev=False)
+parser.add_argument(
+    '-p',
+    '--path',
+    help='Path to the root folder.'
+)
+parser.add_argument(
+    '-al',
+    '--album',
+    help='Name of the album.'
+)
+parser.add_argument(
+    '-ar',
+    '--artist',
+    help='Name of the artist.'
+)
+parser.add_argument(
+    '-alr',
+    '--album-artist',
+    help='Name of the album artist.'
+)
+parser.add_argument(
+    '-g',
+    '--genre',
+    help='Genre of the album.'
+)
+parser.add_argument(
+    '-gl',
+    '--genre-list',
+    help='List of all genres.',
+    type=bool,
+    default=False,
+)
+parser.add_argument(
+    '-i',
+    '--interactive',
+    help='Activate the interactive mode.',
+    type=bool,
+    default=False
+)
+
+args = parser.parse_args()
+
 valid_args = [
     help_arg,
     path_arg,
