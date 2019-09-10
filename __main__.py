@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import sys
+import argparse
 
 from eyed3 import id3
 
