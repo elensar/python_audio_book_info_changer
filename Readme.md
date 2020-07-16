@@ -8,17 +8,25 @@ This Python script will help you to set ID3 tags for your mp3 audio books on a c
 This Python script is written in Python 3.6.3 and it is recommended to have this version installed. It also used the [eyed3](https://eyed3.readthedocs.io/en/latest/) library which you can simply install over pip with `pip install eyed3` and the [natsort](https://pypi.org/project/natsort/) library wich you can also install over pip with `pip install natsort`.
 
 ## First step
-I recommend as first step to execute `audio_book_info_changer.py` with the argument **"-?"** to get a the following list with all allowed arguments.
+I recommend as first step to execute `audio_book_info_changer.py` with the argument **"-h"** to get a the following list with all allowed arguments.
 
 ```
--?      --help            Mandatory:False    Show all valid arguments.
--p      --path            Mandatory:True     Path to the root folder.
--al     --album           Mandatory:False    Name of the album.
--ar     --artist          Mandatory:False    Name of the artist.
--alr    --album-artist    Mandatory:False    Name of the album artist.
--g      --genre           Mandatory:False    Genre of the album.
--gl     --genre-list      Mandatory:False    List of all genres.
--i      --interactive     Mandatory:False    Activate the interactive mode.
+usage: Audio book info changer [-h] [-p PATH] [-al ALBUM] [-ar ARTIST]
+                               [-alr ALBUM_ARTIST] [-g GENRE] [-gl] [-i]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p PATH, --path PATH  Path to the root folder.
+  -al ALBUM, --album ALBUM
+                        Name of the album.
+  -ar ARTIST, --artist ARTIST
+                        Name of the artist.
+  -alr ALBUM_ARTIST, --album-artist ALBUM_ARTIST
+                        Name of the album artist.
+  -g GENRE, --genre GENRE
+                        Genre of the album.
+  -gl, --genre-list     List of all genres.
+  -i, --interactive     Activate the interactive mode.
 ```
 
 ## How to run the script
