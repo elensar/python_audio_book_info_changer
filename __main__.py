@@ -1,92 +1,62 @@
-#!/usr/bin/python3
+# -*- encoding: utf-8 -*-
+# !/usr/bin/python3.7
 
-import sys
 import argparse
+import sys
 
 from eyed3 import id3
 
-from converter import argument_converter
-from converter.argument import argument
-from helper import utils
 import mp3_info_changer
+from helper import utils
 
-help_arg = argument('-?', '--help', False, 'Show all valid arguments.')
-path_arg = argument('-p', '--path', True, 'Path to the root folder.')
-album_arg = argument('-al', '--album', False, 'Name of the album.')
-artist_arg = argument('-ar', '--artist', False, 'Name of the artist.')
-album_artist_arg = argument('-alr', '--album-artist', False, 'Name of the album artist.')
-genre_arg = argument('-g', '--genre', False, 'Genre of the album.')
-genre_list_arg = argument('-gl', '--genre-list', False, 'List of all genres.')
-interactive_arg = argument('-i', '--interactive', False, 'Activate the interactive mode.')
-
-parser = argparse.ArgumentParser(allow_abbrev=False)
+parser = argparse.ArgumentParser(allow_abbrev=False, prog='Audio book info changer')
 parser.add_argument(
     '-p',
     '--path',
-    help='Path to the root folder.'
+    help='Path to the root folder.',
+    type=str,
+    default='.'
 )
 parser.add_argument(
     '-al',
     '--album',
+    type=str,
     help='Name of the album.'
 )
 parser.add_argument(
     '-ar',
     '--artist',
+    type=str,
     help='Name of the artist.'
 )
 parser.add_argument(
     '-alr',
     '--album-artist',
+    type=str,
     help='Name of the album artist.'
 )
 parser.add_argument(
     '-g',
     '--genre',
+    type=str,
     help='Genre of the album.'
 )
 parser.add_argument(
     '-gl',
     '--genre-list',
     help='List of all genres.',
-    type=bool,
-    default=False,
+    action="store_true"
 )
 parser.add_argument(
     '-i',
     '--interactive',
     help='Activate the interactive mode.',
-    type=bool,
-    default=False
+    action="store_true"
 )
 
 args = parser.parse_args()
 
-valid_args = [
-    help_arg,
-    path_arg,
-    album_arg,
-    artist_arg,
-    album_artist_arg,
-    genre_arg,
-    genre_list_arg,
-    interactive_arg
-]
-
-argument_help_text = argument_converter.valid_argument_text(valid_args)
-
-print('Used arguments:')
-print(sys.argv)
-
-help_argument = argument_converter.get_argument(sys.argv, help_arg)
-if help_argument:
-    print(argument_help_text)
-    sys.exit()
-
-interactive_argument = argument_converter.get_argument(sys.argv, interactive_arg)
-
-genre_list_argument = argument_converter.get_argument(sys.argv, genre_list_arg)
-if genre_list_argument:
+if args.genre_list:
     genrelist = id3.genres.items()
     for genre in genrelist:
         genre_number = genre[0]
@@ -97,38 +67,16 @@ if genre_list_argument:
             and isinstance(genre_name, str):
             print('{0:3d}: {1}'.format(genre[0], genre[1]))
 
-    if not interactive_argument:
+    if not args.interactive:
         sys.exit()
 
-path_value = argument_converter.get_clean_argument_value(sys.argv, path_arg)
-album_value = argument_converter.get_clean_argument_value(sys.argv, album_arg)
-artist_value = argument_converter.get_clean_argument_value(sys.argv, artist_arg)
-album_artist_value = argument_converter.get_clean_argument_value(sys.argv, album_artist_arg)
-genre_value = argument_converter.get_clean_argument_value(sys.argv, genre_arg)
-
-if interactive_argument or argument_converter.arguments_are_null_or_empty(sys.argv):
-    if not path_value:
-        path_value = utils.get_input_value('Path', path_arg.is_mandatory)
-
-    if not album_value:
-        album_value = utils.get_input_value('Album', album_arg.is_mandatory)
-
-    if not artist_value:
-        artist_value = utils.get_input_value('Artist', artist_arg.is_mandatory)
-
-    if not album_artist_value:
-        album_artist_value = utils.get_input_value('Album Artist', album_artist_arg.is_mandatory)
-
-    if not genre_value:
-        genre_value = utils.get_input_value('Genre', genre_arg.is_mandatory)
-
-if not path_value:
+if not args.path:
     raise ValueError('Path must not be empty!')
 
 mp3_info_changer.change_mp3_tags(
-    path_value,
-    album_value,
-    artist_value,
-    album_artist_value,
-    genre_value
+    args.path,
+    args.album,
+    args.artist,
+    args.album_artist,
+    args.genre
 )

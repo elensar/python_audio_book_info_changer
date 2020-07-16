@@ -1,10 +1,12 @@
-#!/usr/bin/python3
+# -*- encoding: utf-8 -*-
+# !/usr/bin/python3.7
 
 import os
 import sys
 
 import eyed3
 from natsort import natsorted
+
 
 def change_mp3_tags(
         root_dir: str,
