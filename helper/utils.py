@@ -1,4 +1,6 @@
-#!/usr/bin/python3
+# -*- encoding: utf-8 -*-
+# !/usr/bin/python3.7
+
 """Some helper functions."""
 
 def get_value_if_not_none(value, get_value=lambda value: value, default_value=None):
@@ -40,30 +42,3 @@ def first_or_none(items, condition=lambda item: True):
             return item
 
     return None
-
-def get_input_value(value_name: str, is_mandatory: bool=False) -> str:
-    """
-    Get input value from user for a specific value.
-
-    Arguments:
-        value_name {str} -- Name of the value which will be asked.
-
-    Keyword Arguments:
-        is_mandatory {bool} -- If True it will be asked for the value intil user input. (default: {False:bool})
-
-    Raises:
-        ValueError -- value_name must not be None!
-
-    Returns:
-        str -- User input or None if not manndatory.
-    """
-    if not value_name:
-        raise ValueError('value_name must not be None!')
-
-    additional_info = '' if not is_mandatory else ' (Input is mandatory)'
-
-    while True:
-        value = input('Please insert value for {0}{1}: '.format(value_name, additional_info))
-
-        if value or not is_mandatory:
-            return value
